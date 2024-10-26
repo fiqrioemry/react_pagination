@@ -3,8 +3,8 @@ import PaginationNav from "./component/PaginationNav";
 import PaginationBox from "./component/PaginationBox";
 
 function App() {
-  const products = Array.from({ length: 1000 }, (_, i) => i + 1);
-  const productPerPage = 8;
+  const products = Array.from({ length: 12000 }, (_, i) => i + 1); // <--- replace this with your data
+  const productPerPage = 10; // <--- set this for how many product you want to show
   const [currentPage, setCurrentPage] = useState(1);
   const indexLastProduct = productPerPage * currentPage;
   const indexFirstProduct = indexLastProduct - productPerPage;
@@ -13,6 +13,10 @@ function App() {
 
   const handlePagination = (number) => {
     setCurrentPage(number);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   return (
@@ -21,7 +25,7 @@ function App() {
         <div className="text-xl font-semibold uppercase">
           Pagination Implementation
         </div>
-        <div className="flex flex-wrap min-h-[335px] bg-red-500">
+        <div className="flex flex-wrap min-h-[335px]">
           <PaginationBox productToShow={productToShow} />
         </div>
         <PaginationNav
